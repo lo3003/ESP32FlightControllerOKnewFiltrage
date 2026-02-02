@@ -65,15 +65,20 @@
 
 // --- IMU FILTERING (hover stability) ---
 // DLPF MPU6050: 0x00=260Hz, 0x01=184Hz, 0x02=94Hz, 0x03=44Hz, 0x04=21Hz, 0x05=10Hz, 0x06=5Hz
-#define MPU_DLPF_CFG            0x04    // 21Hz pour hover (moins de bruit, latence acceptable)
+#define MPU_DLPF_CFG            0x02    // 44Hz pour hover (moins de bruit, latence acceptable)
 
 // PT1 Gyro Filter: cutoff frequency en Hz (15Hz = bon compromis hover/réactivité)
-#define GYRO_PT1_CUTOFF_HZ      15.0f   // Fréquence de coupure du filtre PT1
+#define GYRO_PT1_CUTOFF_HZ      60.0   // Fréquence de coupure du filtre PT1
 
 // PT1 Cascade: 1 = 2 filtres PT1 en série (atténuation -40dB/dec), 0 = simple PT1 (-20dB/dec)
-#define GYRO_PT1_CASCADE        1       // Recommandé pour hover stabilisé
+#define GYRO_PT1_CASCADE        0       // Recommandé pour hover stabilisé
 
 // Mutex I2C timeout (ms) - court pour ne pas rater de cycles IMU
 #define IMU_MUTEX_TIMEOUT_MS    2       // 2ms max d'attente mutex
+
+
+// --- Paramètres de filtrage ---
+#define GYRO_LPF_CUTOFF 80.0f    // Fréquence de coupure pour le Gyro (Hz)
+#define DTERM_LPF_CUTOFF 40.0f   // Fréquence de coupure plus basse pour le terme D (plus de lissage)
 
 #endif
